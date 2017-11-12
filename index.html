@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
+    <!--font-->
+    <link href='https://fonts.googleapis.com/css?family=Lato:100,200,300' rel='stylesheet' type='text/css'>
     <!-- endbuild -->
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
@@ -52,22 +54,22 @@
 
     <!-- Add your site or application content here -->
     <div class="header">
-      <div class="navbar navbar-toggleable-md navbar-inverse bg-primary" role="navigation">
-        <div class="container">
+      <div class="navbar navbar-toggleable-md navbar-inverse " role="navigation">
+        <!--<div class="container">-->
           <div class="navbar-header">
-            <a class="navbar-brand" href="#/">Coming Soon</a>
+            <a class="navbar-brand" href="#/" style="font-family: Lato; font-weight: 300; color: #000000;">Coming Soon</a>
           </div>
 
           <div class="collapse navbar-collapse" id="js-navbar-collapse">
             <ul class="nav navbar-nav">
-              <li class="nav-item active"><a href="#/" class="nav-link">Home</a></li>
+              <li class="nav-item active"><a href="#/" class="nav-link" style="font-family: Lato; color: #000000; font-weight: 300;font-size:20px; ">Home</a></li>
             </ul>
           </div>
-        </div>
+        <!--</div>-->
       </div>
     </div>
 
-    <div class="container">
+    <div class="container" style="padding-top:30px;">
       <div ng-view=""></div>
     </div>
 
