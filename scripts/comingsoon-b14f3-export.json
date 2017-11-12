@@ -1,0 +1,25 @@
+{
+  "data" : {
+    "business" : [ null, {
+      "category_id" : 1,
+      "name" : "Tommy Bakery"
+    }, {
+      "category_id" : 1,
+      "name" : "Maria Bakery"
+    }, {
+      "category_id" : 2,
+      "name" : "Palo Alto Electronic Fixing Store"
+    } ],
+    "customers" : [ null, "John", "Yoho" ],
+    "request" : [ null, {
+      "customer_id" : 1,
+      "service_id" : 1,
+      "state" : "completed"
+    }, {
+      "customer_id" : 2,
+      "service_id" : 2,
+      "state" : "completed"
+    } ],
+    "services" : [ null, "Bakery", "Home Electronic fixing", "Plumber", "Car fixing", "Children Care" ]
+  }
+}
