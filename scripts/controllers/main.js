@@ -50,6 +50,12 @@ angular.module('ComingSoonApp')
       } ;
 
       $scope.acceptRequest = function() {
-          console.log("hi");
+          //console.log("hi");
+          /*
+          var xhttp = new XMLHttpRequest();
+          xhttp.open("POST", "https://rest.nexmo.com/sms/json", true);
+          xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+          xhttp.send("from=Nexmo&text=A text message sent using the Nexmo SMS API&to=6174801331&api_key=5532c049&api_secret=4f5cc627acaadb3e");
+          */
       };
   }]);

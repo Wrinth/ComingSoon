@@ -1,138 +1,82 @@
 <div ng-controller="MainCtrl">
   <h1 >Coming Soon</h1>
   <div class="row">
-    <!--<div class="col-sm-2"></div>-->
-    <!--<div class="jumbotron col-sm-8" style="padding-top: 0;">-->
 
-      <!--hard-coded sample-->
-      <!--<ul class="plans">-->
-        <!--<li class="plan highlight" >-->
-            <!--<span class="price price-green" data-toggle="tooltip" title="Customer Budger" data-placement="left">-->
-              <!--$50-->
-            <!--</span>-->
 
-          <!--<div class="details">-->
-            <!--<h3 class="plan-title">Fix the Car</h3>-->
-            <!--<p class="plan-description">1 Washington Sqr, San Jose, CA</p>-->
-          <!--</div>-->
-
-          <!--<button class="acceptBtn">Accept</button>-->
-        <!--</li>-->
-
-        <!--<li class="plan">-->
-          <!--<span class="price price-green">-->
-            <!--$10-->
-          <!--</span>-->
-
-          <!--<div class="details">-->
-            <!--<h3 class="plan-title">Plumb my toilet</h3>-->
-            <!--<p class="plan-description">1 Washington Sqr, San Jose, CA</p>-->
-          <!--</div>-->
-
-          <!--<button class="acceptBtn">Accept</button>-->
-        <!--</li>-->
-      <!--</ul>-->
-
-    <!--<div ng-controller="MainCtrl">-->
-      <!--<h1>Coming Soon</h1>-->
-      <!--<div class="row">-->
-        <!--<div class="col-sm-2"></div>-->
-
-        <ul class="plans">
-          <li ng-repeat="request in main.requests" class="plan highlight" ng-class="request.state">
+    <ul class="plans">
+      <li ng-repeat="request in main.requests" class="plan highlight" ng-class="request.state">
             <span class="price price-green" data-toggle="tooltip" title="Customer Budget" data-placement="left">
               ${{request.budget}}
             </span>
 
-            <div class="details">
-              <h3 class="plan-title" ng-class="request.state">Fix the {{request.object}}</h3>
-              <p class="plan-description" ng-class="request.state">{{main.getUserInforById(request.customer_id).address}}</p>
-            </div>
+        <div class="details">
+          <h3 class="plan-title" ng-class="request.state">Fix the {{request.object}}</h3>
+          <p class="plan-description" ng-class="request.state">{{main.getUserInforById(request.customer_id).address}}</p>
+        </div>
 
-            <button class="acceptBtn" ng-show="request.state === 'incomplete'" ng-click="acceptRequest();request.state = 'pending'">Accept</button>
-            <button class="pendingBtn"  ng-show="request.state === 'pending'" disabled>Pending</button>
-            <button class="completedBtn"  ng-show="request.state === 'completed'" disabled>Completed</button>
-          </li>
-
-
-        </ul>
+        <button class="acceptBtn" ng-show="request.state === 'incomplete'" onclick="sendSMS()" ng-click="request.state = 'pending'">Accept</button>
+        <button class="pendingBtn"  ng-show="request.state === 'pending'" ng-click="request.state = 'incomplete'">Pending</button>
+        <button class="completedBtn"  ng-show="request.state === 'completed'" disabled>Completed</button>
+      </li>
 
 
+    </ul>
 
-        <script>
-            $(document).ready(function(){
-                $('[data-toggle="tooltip"]').tooltip();
+
+
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+
+        function sendSMS() {
+            var data = new FormData();
+            data.append("from", "12016958261");
+            data.append("text", "A text message sent using the Nexmo SMS API");
+            data.append("to", "6174801331");
+            data.append("api_key", "5532c049");
+            data.append("api_secret", "4f5cc627acaadb3e");
+
+            var xhr = new XMLHttpRequest();
+            xhr.withCredentials = true;
+
+            xhr.addEventListener("readystatechange", function () {
+                if (this.readyState === 4) {
+                    console.log(this.responseText);
+                }
             });
-        </script>
 
-      </div>
-    </div>
-  </div>
+            xhr.open("POST", "https://rest.nexmo.com/sms/json");
+            xhr.setRequestHeader("cache-control", "no-cache");
+            xhr.setRequestHeader("postman-token", "6e36339a-6d15-ad93-49ed-3e10c3d9bee1");
 
+            xhr.send(data);
 
-    </div>
+//            $.ajax({
+//                url: 'https://rest.nexmo.com/sms/json',
+//                headers: {
+//                    'Content-Type': 'application/x-www-form-urlencoded'
+//                },
+//                type: "POST", /* or type:"GET" or type:"PUT" */
+//                dataType: "json",
+//                data: {
+//                    from:"Nexmo",
+//                    text:"A text message sent using the Nexmo SMS API",
+//                    to:"6174801331",
+//                    api_key:"5532c049",
+//                    api_secret:"4f5cc627acaadb3e"
+//                },
+//                success: function (result) {
+//                    console.log(result);
+//                },
+//                error: function () {
+//                    console.log("error");
+//                }
+//            });
+        }
+    </script>
+
   </div>
 </div>
+</div>
 
-
-
-
-
-
-<!--<div ng-controller="MainCtrl">-->
-  <!--<h1>Coming Soon</h1>-->
-  <!--<div class="row">-->
-    <!--<div class="col-sm-2"></div>-->
-    <!--&lt;!&ndash;<div class="jumbotron col-sm-8" style="padding-top: 0;">&ndash;&gt;-->
-
-    <!--&lt;!&ndash;<li ng-repeat="request in main.requests">&ndash;&gt;-->
-    <!--&lt;!&ndash;<h1 href="#">{{request.customer_id}} - ${{request.budget}}</h1>&ndash;&gt;-->
-    <!--&lt;!&ndash;<p>{{request.address}}</p>&ndash;&gt;-->
-    <!--&lt;!&ndash;<p>{{request.state}}</p>&ndash;&gt;-->
-    <!--&lt;!&ndash;</li>&ndash;&gt;-->
-
-    <!--<script>-->
-        <!--$(document).ready(function(){-->
-            <!--$('[data-toggle="tooltip"]').tooltip();-->
-        <!--});-->
-    <!--</script>-->
-
-    <!--<ul class="plans">-->
-      <!--<li class="plan highlight" ng-repeat="request in main.requests">-->
-            <!--<span class="price price-green" data-toggle="tooltip" title="Customer Budger" data-placement="left">-->
-              <!--${{request.budget}}-->
-            <!--</span>-->
-
-        <!--<div class="details">-->
-          <!--<h3 class="plan-title">Fix the {{request.object}}</h3>-->
-          <!--<p class="plan-description">1 Washington sq, San jose, CA</p>-->
-        <!--</div>-->
-
-        <!--<button class="acceptBtn">Accept</button>-->
-      <!--</li>-->
-
-      <!--&lt;!&ndash;<li ng-repeat="request in main.requests">&ndash;&gt;-->
-      <!--&lt;!&ndash;<h1 href="#">{{request.customer_id}} - ${{request.budget}}</h1>&ndash;&gt;-->
-      <!--&lt;!&ndash;<p>{{request.address}}</p>&ndash;&gt;-->
-      <!--&lt;!&ndash;<p>{{request.state}}</p>&ndash;&gt;-->
-      <!--&lt;!&ndash;</li>&ndash;&gt;-->
-
-      <!--&lt;!&ndash;<li class="plan">&ndash;&gt;-->
-      <!--&lt;!&ndash;<span class="price price-green">&ndash;&gt;-->
-      <!--&lt;!&ndash;$10&ndash;&gt;-->
-      <!--&lt;!&ndash;</span>&ndash;&gt;-->
-
-      <!--&lt;!&ndash;<div class="details">&ndash;&gt;-->
-      <!--&lt;!&ndash;<h3 class="plan-title">Plumb my toilet</h3>&ndash;&gt;-->
-      <!--&lt;!&ndash;<p class="plan-description">1 Washington Sqr, San Jose, CA</p>&ndash;&gt;-->
-      <!--&lt;!&ndash;</div>&ndash;&gt;-->
-
-      <!--&lt;!&ndash;<button class="acceptBtn">Accept</button>&ndash;&gt;-->
-      <!--&lt;!&ndash;</li>&ndash;&gt;-->
-    <!--</ul>-->
-
-
-
-  <!--</div>-->
-<!--</div>-->
-<!--</div>-->
