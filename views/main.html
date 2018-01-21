@@ -1,14 +1,44 @@
 <div ng-controller="MainCtrl">
-  <h1>Requests List</h1>
+  <h1>Coming Soon</h1>
   <div class="row">
-    <div class="col-sm-2"></div>
-    <div class="jumbotron col-sm-8" style="padding-top: 0;">
 
-      <li ng-repeat="request in main.requests">
-        <h1 href="#">{{request.customer_id}} - {{request.budge}}</h1>
-        <p>{{request.state}}</p>
+
+    <ul class="plans">
+      <li ng-repeat="request in main.requests" class="plan highlight" ng-class="request.state">
+            <span class="price price-green" data-toggle="tooltip" title="Customer Budget" data-placement="left">
+              ${{request.budget}}
+            </span>
+
+        <div class="details">
+          <h3 class="plan-title" ng-class="request.state">Fix the {{request.object}}</h3>
+          <p class="plan-description" ng-class="request.state">{{main.getUserInforById(request.customer_id).address}}</p>
+        </div>
+
+        <button class="acceptBtn" ng-show="request.state === 'incomplete'" onclick="sendSMS()" ng-click="request.state = 'pending'">Accept</button>
+        <button class="pendingBtn"  ng-show="request.state === 'pending'" ng-click="request.state = 'incomplete'">Pending</button>
+        <button class="completedBtn"  ng-show="request.state === 'completed'" disabled>Completed</button>
       </li>
 
-    </div>
+
+    </ul>
+
+
+
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+
+        function sendSMS() {
+          $.ajax({
+            url: "./api/sendSMS.php"
+          }).done(function(data) {
+            console.log(data);
+          });
+        }
+    </script>
+
   </div>
 </div>
+</div>
+

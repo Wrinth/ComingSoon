@@ -22,6 +22,11 @@ angular
         controller: 'MainCtrl',
         controllerAs: 'main'
       })
+      .when('/ranking', {
+        templateUrl: 'views/ranking.html',
+        controller: 'RankingCtrl',
+        controllerAs: 'ranking'
+      })
       .otherwise({
         redirectTo: '/'
       });
